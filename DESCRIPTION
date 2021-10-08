@@ -1,0 +1,11 @@
+Package: gmm
+Type: Package
+Title: Gaussian mixture models
+Version: 1.0
+Date: 2021-10-07
+Author: Michael C. Grundler
+Maintainer: Michael C. Grundler <mcgrundler@gmail.com>
+Description: Package gmm implements an expectation-maximation algorithm for
+  fitting normal mixture models to continuously-valued data.
+NeedsCompilation: yes
+License: CC0
