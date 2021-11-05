@@ -236,7 +236,8 @@ static void gmm_mstep(struct gmm *gmm, double *x)
             {
                 z = ISNAN(x[i + l * gmm->n]) ? 0 : 
                     x[i + l * gmm->n] - gmm->centers[j + l * gmm->k];
-                gmm->variances[l] += (z * gmm->memberships[i + j * gmm->n] * z) / gmm->n;
+                gmm->variances[l] += 
+                    (z * gmm->memberships[i + j * gmm->n] * z) / gmm->n;
             }
         }
     }
