@@ -1,2 +1,8 @@
 useDynLib(gmm, .registration=TRUE)
 exportPattern("^[[:alpha:]]+")
+
+S3method(gmm, data.frame)
+S3method(gmm, prcomp)
+S3method(gmm, princomp)
+S3method(predict, gmm)
+S3method(simulate, gmm)

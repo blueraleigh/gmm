@@ -1,6 +1,28 @@
-gmm.fit = function(x, k, niter=500) {
+gmm = function(x, k, niter=500, ...) {
+    UseMethod("gmm")
+}
+
+gmm.default = function(x, k, niter=500, ...) {
+    structure(
+        .Call(C_gmm_fit, as.matrix(x), as.integer(k), as.integer(niter))
+        , class="gmm")
+}
+
+gmm.data.frame = function(x, k, niter=500, ...) {
     structure(
         .Call(C_gmm_fit, data.matrix(x), as.integer(k), as.integer(niter))
+        , class="gmm")
+}
+
+gmm.prcomp = function(x, k, niter=500, choices=1L:2L, ...) {
+    structure(
+        .Call(C_gmm_fit, x$x[, choices], as.integer(k), as.integer(niter))
+        , class="gmm")
+}
+
+gmm.princomp = function(x, k, niter=500, choices=1L:2L, ...) {
+    structure(
+        .Call(C_gmm_fit, x$scores[, choices], as.integer(k), as.integer(niter))
         , class="gmm")
 }
 
@@ -24,3 +46,5 @@ simulate.gmm = function(object, nsim=1, seed=NULL, ...) {
     t(matrix(rnorm(nsim*p, t(object$mixture.centers[mix, ]), 
         sqrt(object$mixture.variances)), p, nsim))
 }
+
+setGeneric("gmm", def=gmm)
